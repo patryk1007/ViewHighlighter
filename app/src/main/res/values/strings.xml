@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">ViewHighlighter</string>
+    <string name="action_settings">Settings</string>
+
+    <!--Text Sample -->
+    <string name="alpha_level">Alpha level:%s</string>
+    <string name="fill_transparent">Fill Transparent Pixels</string>
+    <string name="test_list">Test list highlighter</string>
+    <string name="highlight_item">Highlight item</string>
+    <string name="fullScreen_highlight_text">FullScreenHighlight text</string>
+    <string name="close_me">Close Me</string>
+
+</resources>
