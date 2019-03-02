@@ -15,7 +15,7 @@ class ViewHighlighter : View {
     /**
      * List keeps reference to all highlighted views
      */
-    val highlightedViews = arrayListOf<View>()
+    private var highlightedViews: List<HighlightedView> = arrayListOf()
     /**
      * Set whether this highlighter ignores transparent pixels
      */
@@ -32,6 +32,20 @@ class ViewHighlighter : View {
 
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
         setColor(defaultColor)
+    }
+
+    fun setHighlitingViewWithLabels(views: List<HighlightedView>) {
+        highlightedViews = views
+        notifyViewSetChanged()
+    }
+
+    fun setHighlitingView(views: List<View>) {
+        val newHighLighted = arrayListOf<HighlightedView>()
+        views.forEach {
+            newHighLighted.add(HighlightedView(it, arrayListOf()))
+        }
+        highlightedViews = newHighLighted
+        notifyViewSetChanged()
     }
 
     /**
@@ -72,7 +86,8 @@ class ViewHighlighter : View {
         if (path == null) {
             path = Path()
             path?.let {
-                highlightedViews.forEach { view ->
+                highlightedViews.forEach { highlightedView ->
+                    val view = highlightedView.view
                     if (view.height > 0 && view.width > 0) {
                         val viewPath =
                             if (fillTransparentPixels) preparePathForViewWithAlpha(view) else preparePathForViewNoAlpha(

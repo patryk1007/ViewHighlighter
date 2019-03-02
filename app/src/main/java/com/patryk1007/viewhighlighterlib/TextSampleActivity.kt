@@ -12,7 +12,7 @@ class TextSampleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_text_sample)
-        viewHighlighter.highlightedViews.addAll(arrayListOf(testTextA))
+        viewHighlighter.setHighlitingView(arrayListOf(testTextA))
         initView()
     }
 
