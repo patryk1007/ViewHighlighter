@@ -9,6 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.patryk1007.viewhighlighter.FullScreenHighlight
+import com.patryk1007.viewhighlighter.HighlightedView
+import com.patryk1007.viewhighlighter.LabelPosition
+import com.patryk1007.viewhighlighter.LabelView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.item_layout.view.*
 import kotlinx.android.synthetic.main.view_dialog_custom.view.*
@@ -34,9 +37,12 @@ class MainActivity : AppCompatActivity() {
         highlightItemButton.setOnClickListener {
             val inflater = this.layoutInflater
             val dialogView = inflater.inflate(R.layout.view_dialog_custom, null)
+            val labelView = inflater.inflate(R.layout.label_view, null)
             val listItemView = layoutManager.findViewByPosition(4)
-            val highlightedViews = arrayListOf<View>()
-            listItemView?.let(highlightedViews::add)
+            val highlightedViews = arrayListOf<HighlightedView>()
+            listItemView?.let {
+                highlightedViews.add(HighlightedView(it, listOf(LabelView(labelView, LabelPosition.Bottom))))
+            }
 
             val highlighter = FullScreenHighlight(this, highlightedViews, dialogView)
             highlighter.viewHighlighter.setColor(Color.parseColor("#000000"))

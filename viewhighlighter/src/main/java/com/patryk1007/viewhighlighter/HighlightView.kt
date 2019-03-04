@@ -3,11 +3,9 @@ package com.patryk1007.viewhighlighter
 import android.content.Context
 import android.graphics.*
 import android.os.Build
-import android.util.AttributeSet
 import android.view.View
 
-
-class ViewHighlighter : View {
+class HighlightView : View {
 
     private val defaultColor = Color.parseColor("#A5000000")
     private val maxAlphaLevel = 255
@@ -27,12 +25,9 @@ class ViewHighlighter : View {
     private var alphaLevel = 125
 
 
-    constructor(context: Context?) : super(context) {
-        setColor(defaultColor)
-    }
-
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
-        setColor(defaultColor)
+    constructor(context: Context?, color: Int, alphaLevel: Float) : super(context) {
+        setColor(color)
+        setAlphaLevel(alphaLevel)
     }
 
     fun setHighlightingViewWithLabels(views: List<HighlightedView>) {

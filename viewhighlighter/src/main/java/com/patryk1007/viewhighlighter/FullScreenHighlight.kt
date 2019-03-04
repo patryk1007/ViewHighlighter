@@ -10,7 +10,7 @@ import java.util.*
 
 class FullScreenHighlight(
     context: Context,
-    private val highlightedViews: ArrayList<View>,
+    private val highlightedViews: ArrayList<HighlightedView>,
     private val layoutView: View? = null
 ) : Dialog(context) {
 
@@ -41,7 +41,7 @@ class FullScreenHighlight(
             ViewGroup.LayoutParams.MATCH_PARENT
         )
         dialogRootView.addView(viewHighlighter)
-        viewHighlighter.setHighlitingView(highlightedViews)
+        viewHighlighter.setHighlightingViewWithLabels(highlightedViews)
     }
 
     private fun addLayoutView() {
