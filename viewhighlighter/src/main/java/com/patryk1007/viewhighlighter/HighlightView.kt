@@ -1,14 +1,18 @@
 package com.patryk1007.viewhighlighter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
 import android.os.Build
 import android.view.View
 
-class HighlightView : View {
+@SuppressLint("ViewConstructor")
+internal class HighlightView(context: Context?) : View(context) {
 
-    private val defaultColor = Color.parseColor("#A5000000")
-    private val maxAlphaLevel = 255
+    companion object {
+        private const val maxAlphaLevel = 255
+        private val defaultColor = Color.parseColor("#A5000000")
+    }
 
     /**
      * List keeps reference to all highlighted views
@@ -25,22 +29,12 @@ class HighlightView : View {
     private var alphaLevel = 125
 
 
-    constructor(context: Context?, color: Int, alphaLevel: Float) : super(context) {
-        setColor(color)
-        setAlphaLevel(alphaLevel)
+    init {
+        setColor(defaultColor)
     }
 
     fun setHighlightingViewWithLabels(views: List<HighlightedView>) {
         highlightedViews = views
-        notifyViewSetChanged()
-    }
-
-    fun setHighlightingView(views: List<View>) {
-        val newHighLighted = arrayListOf<HighlightedView>()
-        views.forEach {
-            newHighLighted.add(HighlightedView(it, arrayListOf()))
-        }
-        highlightedViews = newHighLighted
         notifyViewSetChanged()
     }
 

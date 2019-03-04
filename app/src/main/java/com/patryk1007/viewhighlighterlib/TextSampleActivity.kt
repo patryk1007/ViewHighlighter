@@ -50,7 +50,7 @@ class TextSampleActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-        fillTransparentCheckBox.setOnCheckedChangeListener(object:CompoundButton.OnCheckedChangeListener{
+        fillTransparentCheckBox.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
             override fun onCheckedChanged(p0: CompoundButton?, p1: Boolean) {
                 updateTransparentBackgroundMode()
             }
@@ -58,8 +58,8 @@ class TextSampleActivity : AppCompatActivity() {
         updateTransparentBackgroundMode()
     }
 
-    private fun updateTransparentBackgroundMode(){
-        viewHighlighter.fillTransparentPixels = fillTransparentCheckBox.isChecked
+    private fun updateTransparentBackgroundMode() {
+        viewHighlighter.setFillTransparentPixels(fillTransparentCheckBox.isChecked)
         viewHighlighter.notifyViewSetChanged()
     }
 }
