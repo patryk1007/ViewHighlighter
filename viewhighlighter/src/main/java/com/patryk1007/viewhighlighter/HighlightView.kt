@@ -7,7 +7,7 @@ import android.os.Build
 import android.view.View
 
 @SuppressLint("ViewConstructor")
-internal class HighlightView(context: Context?) : View(context) {
+internal class HighlightView(context: Context?, private val viewCallback: HighlightViewCallback) : View(context) {
 
     companion object {
         private const val maxAlphaLevel = 255
@@ -17,7 +17,7 @@ internal class HighlightView(context: Context?) : View(context) {
     /**
      * List keeps reference to all highlighted views
      */
-    private var highlightedViews: List<HighlightedView> = arrayListOf()
+    private var highlightedViews: List<HighlightedViewWithLabels> = arrayListOf()
     /**
      * Set whether this highlighter ignores transparent pixels
      */
@@ -33,7 +33,7 @@ internal class HighlightView(context: Context?) : View(context) {
         setColor(defaultColor)
     }
 
-    fun setHighlightingViewWithLabels(views: List<HighlightedView>) {
+    fun setHighlightingViewWithLabels(views: List<HighlightedViewWithLabels>) {
         highlightedViews = views
         notifyViewSetChanged()
     }
@@ -81,7 +81,7 @@ internal class HighlightView(context: Context?) : View(context) {
                 highlightedViews.forEach { highlightedView ->
                     val view = highlightedView.view
                     if (view.height > 0 && view.width > 0) {
-                        prepareLabelsView(highlightedView)
+                        viewCallback.onViewReady(highlightedView, getViewPosition(view))
                         val viewPath =
                             if (fillTransparentPixels) preparePathForViewWithAlpha(view) else preparePathForViewNoAlpha(
                                 view
@@ -101,29 +101,6 @@ internal class HighlightView(context: Context?) : View(context) {
                 canvas?.clipPath(it, Region.Op.DIFFERENCE)
             }
         }
-    }
-
-    private fun prepareLabelsView(highlightedView: HighlightedView): ArrayList<LabelWithScreenPosition> {
-        val labels = arrayListOf<LabelWithScreenPosition>()
-        val view = highlightedView.view
-        val viewPosition = getViewPosition(view)
-        highlightedView.labels.forEach {
-            when (it.position) {
-                LabelPosition.Top -> {
-                    labels.add(LabelWithScreenPosition(it.label, Point(0, viewPosition.y - it.label.height)))
-                }
-                LabelPosition.Bottom -> {
-                    labels.add(LabelWithScreenPosition(it.label, Point(0, viewPosition.y + view.height)))
-                }
-                LabelPosition.Start -> {
-                    labels.add(LabelWithScreenPosition(it.label, Point(viewPosition.x - it.label.width, 0)))
-                }
-                LabelPosition.End -> {
-                    labels.add(LabelWithScreenPosition(it.label, Point(viewPosition.x + view.height, 0)))
-                }
-            }
-        }
-        return labels
     }
 
     private fun preparePathForViewNoAlpha(view: View): Path {

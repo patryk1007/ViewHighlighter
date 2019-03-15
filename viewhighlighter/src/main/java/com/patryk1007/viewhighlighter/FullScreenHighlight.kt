@@ -10,7 +10,7 @@ import java.util.*
 
 class FullScreenHighlight(
     context: Context,
-    private val highlightedViews: ArrayList<HighlightedView>,
+    private val highlightedViews: ArrayList<HighlightedViewWithLabels>,
     private val layoutView: View? = null
 ) : Dialog(context) {
 
