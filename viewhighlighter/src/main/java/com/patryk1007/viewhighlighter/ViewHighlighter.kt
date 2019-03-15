@@ -86,8 +86,10 @@ class ViewHighlighter : FrameLayout {
 
         viewData.labels.forEach {
             val label = it.label
-            label.layoutParams = params
-            addView(label)
+            if (label.parent == null) {
+                label.layoutParams = params
+                addView(label)
+            }
 
             label.waitForLayout {
                 setLabelPadding(it, viewPosition, viewData.view)
@@ -96,18 +98,24 @@ class ViewHighlighter : FrameLayout {
     }
 
     private fun setLabelPadding(labelView: LabelView, viewPosition: Point, highlightView: View) {
+        val highlightViewHeight = highlightView.height
+        val highlightViewWidth = highlightView.width
+
         val padding = when (labelView.position) {
             LabelPosition.Top -> {
-                Point(0, viewPosition.y - labelView.label.height)
+                Point(viewPosition.x + highlightViewWidth / 2, viewPosition.y - labelView.label.height)
             }
             LabelPosition.Bottom -> {
-                Point(0, viewPosition.y + highlightView.height)
+                Point(viewPosition.x + highlightViewWidth / 2, viewPosition.y + highlightViewHeight)
             }
             LabelPosition.Start -> {
-                Point(viewPosition.x - labelView.label.width, 0)
+                Point(viewPosition.x - labelView.label.width, (viewPosition.y + highlightViewHeight / 2))
             }
             LabelPosition.End -> {
-                Point(viewPosition.x + highlightView.height, 0)
+                Point(
+                    viewPosition.x + highlightViewWidth,
+                    (viewPosition.y + highlightViewHeight / 2)
+                )
             }
         }
         labelView.label.setPadding(padding.x, padding.y, 0, 0)

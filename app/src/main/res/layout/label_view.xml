@@ -4,5 +4,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/holo_red_dark"
-        android:text="I AM LABEL"
+        android:text="HERE"
 />

@@ -3,8 +3,10 @@ package com.patryk1007.viewhighlighterlib
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.CompoundButton
 import android.widget.SeekBar
+import com.patryk1007.viewhighlighter.HighlightedViewWithLabels
+import com.patryk1007.viewhighlighter.LabelPosition
+import com.patryk1007.viewhighlighter.LabelView
 import kotlinx.android.synthetic.main.activity_text_sample.*
 
 class TextSampleActivity : AppCompatActivity() {
@@ -12,7 +14,24 @@ class TextSampleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_text_sample)
-        viewHighlighter.setHighlightingView(arrayListOf(testTextA))
+
+
+        val inflater = this.layoutInflater
+        val labelView = inflater.inflate(R.layout.label_view, null)
+        val labelView2 = inflater.inflate(R.layout.label_view, null)
+
+        val highlightedViews = arrayListOf<HighlightedViewWithLabels>()
+        highlightedViews.add(
+            HighlightedViewWithLabels(
+                testTextA,
+                listOf(
+                    LabelView(labelView, LabelPosition.Start),
+                    LabelView(labelView2, LabelPosition.End)
+                )
+            )
+        )
+
+        viewHighlighter.setHighlightingViewWithLabels(highlightedViews)
         initView()
     }
 
@@ -50,11 +69,7 @@ class TextSampleActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-        fillTransparentCheckBox.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
-            override fun onCheckedChanged(p0: CompoundButton?, p1: Boolean) {
-                updateTransparentBackgroundMode()
-            }
-        })
+        fillTransparentCheckBox.setOnCheckedChangeListener { p0, p1 -> updateTransparentBackgroundMode() }
         updateTransparentBackgroundMode()
     }
 
