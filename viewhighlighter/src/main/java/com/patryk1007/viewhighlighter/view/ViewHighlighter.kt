@@ -1,16 +1,21 @@
-package com.patryk1007.viewhighlighter
+package com.patryk1007.viewhighlighter.view
 
 import android.content.Context
 import android.graphics.Point
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
+import com.patryk1007.viewhighlighter.data.HighlightViewCallback
+import com.patryk1007.viewhighlighter.data.HighlightedViewWithLabels
+import com.patryk1007.viewhighlighter.data.LabelPosition
+import com.patryk1007.viewhighlighter.data.LabelView
 import com.patryk1007.viewhighlighter.ext.waitForLayout
 
 
 class ViewHighlighter : FrameLayout {
 
-    private val highlightView = HighlightView(context, prepareHighlightViewCallback())
+    private val highlightView =
+        HighlightView(context, prepareHighlightViewCallback())
 
     constructor(context: Context?) : super(context) {
         addHighLighterView()

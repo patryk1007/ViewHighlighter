@@ -4,9 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.SeekBar
-import com.patryk1007.viewhighlighter.HighlightedViewWithLabels
-import com.patryk1007.viewhighlighter.LabelPosition
-import com.patryk1007.viewhighlighter.LabelView
+import com.patryk1007.viewhighlighter.data.HighlightedViewWithLabels
+import com.patryk1007.viewhighlighter.data.LabelPosition
+import com.patryk1007.viewhighlighter.data.LabelView
 import kotlinx.android.synthetic.main.activity_text_sample.*
 
 class TextSampleActivity : AppCompatActivity() {
@@ -25,8 +25,14 @@ class TextSampleActivity : AppCompatActivity() {
             HighlightedViewWithLabels(
                 testTextA,
                 listOf(
-                    LabelView(labelView, LabelPosition.Start),
-                    LabelView(labelView2, LabelPosition.End)
+                    LabelView(
+                        labelView,
+                        LabelPosition.Start
+                    ),
+                    LabelView(
+                        labelView2,
+                        LabelPosition.End
+                    )
                 )
             )
         )

@@ -1,4 +1,4 @@
-package com.patryk1007.viewhighlighter
+package com.patryk1007.viewhighlighter.data
 
 import android.graphics.Point
 import android.view.View

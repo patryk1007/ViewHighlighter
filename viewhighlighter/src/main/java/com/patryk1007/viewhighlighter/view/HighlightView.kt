@@ -1,10 +1,13 @@
-package com.patryk1007.viewhighlighter
+package com.patryk1007.viewhighlighter.view
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
 import android.os.Build
 import android.view.View
+import com.patryk1007.viewhighlighter.data.HighlightViewCallback
+import com.patryk1007.viewhighlighter.data.HighlightedViewWithLabels
+import com.patryk1007.viewhighlighter.data.LabelWithScreenPosition
 
 @SuppressLint("ViewConstructor")
 internal class HighlightView(context: Context?, private val viewCallback: HighlightViewCallback) : View(context) {
@@ -51,7 +54,9 @@ internal class HighlightView(context: Context?, private val viewCallback: Highli
      */
     fun setAlphaLevel(alpha: Float) {
         alphaLevel = (maxAlphaLevel * alpha).toInt()
-        alphaLevel = Math.max(Math.min(alphaLevel, maxAlphaLevel), 0)
+        alphaLevel = Math.max(Math.min(alphaLevel,
+            maxAlphaLevel
+        ), 0)
     }
 
     /**

@@ -8,10 +8,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.patryk1007.viewhighlighter.FullScreenHighlight
-import com.patryk1007.viewhighlighter.HighlightedViewWithLabels
-import com.patryk1007.viewhighlighter.LabelPosition
-import com.patryk1007.viewhighlighter.LabelView
+import com.patryk1007.viewhighlighter.data.HighlightedViewWithLabels
+import com.patryk1007.viewhighlighter.data.LabelPosition
+import com.patryk1007.viewhighlighter.data.LabelView
+import com.patryk1007.viewhighlighter.view.FullScreenHighlight
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.item_layout.view.*
 import kotlinx.android.synthetic.main.view_dialog_custom.view.*
@@ -50,14 +50,21 @@ class MainActivity : AppCompatActivity() {
                     HighlightedViewWithLabels(
                         it,
                         listOf(
-                            LabelView(labelView, LabelPosition.Top),
-                            LabelView(labelView2, LabelPosition.Bottom)
+                            LabelView(
+                                labelView,
+                                LabelPosition.Top
+                            ),
+                            LabelView(
+                                labelView2,
+                                LabelPosition.Bottom
+                            )
                         )
                     )
                 )
             }
 
-            val highlighter = FullScreenHighlight(this, highlightedViews, dialogView)
+            val highlighter =
+                FullScreenHighlight(this, highlightedViews, dialogView)
             highlighter.viewHighlighter.setColor(Color.parseColor("#000000"))
             highlighter.show()
 

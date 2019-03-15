@@ -1,10 +1,12 @@
-package com.patryk1007.viewhighlighter
+package com.patryk1007.viewhighlighter.view
 
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import com.patryk1007.viewhighlighter.data.HighlightedViewWithLabels
+import com.patryk1007.viewhighlighter.R
 import kotlinx.android.synthetic.main.highlight_view.*
 import java.util.*
 
@@ -14,7 +16,8 @@ class FullScreenHighlight(
     private val layoutView: View? = null
 ) : Dialog(context) {
 
-    val viewHighlighter: ViewHighlighter = ViewHighlighter(context)
+    val viewHighlighter: ViewHighlighter =
+        ViewHighlighter(context)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
