@@ -53,7 +53,8 @@ class MainActivity : AppCompatActivity() {
                             LabelView(
                                 labelView,
                                 LabelPosition.Top
-                            ),
+                            )
+                            ,
                             LabelView(
                                 labelView2,
                                 LabelPosition.Bottom

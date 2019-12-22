@@ -19,6 +19,8 @@ class TextSampleActivity : AppCompatActivity() {
         val inflater = this.layoutInflater
         val labelView = inflater.inflate(R.layout.label_view, null)
         val labelView2 = inflater.inflate(R.layout.label_view, null)
+        val labelView3 = inflater.inflate(R.layout.label_view, null)
+        val labelView4 = inflater.inflate(R.layout.label_view, null)
 
         val highlightedViews = arrayListOf<HighlightedViewWithLabels>()
         highlightedViews.add(
@@ -27,10 +29,19 @@ class TextSampleActivity : AppCompatActivity() {
                 listOf(
                     LabelView(
                         labelView,
-                        LabelPosition.Start
+                        LabelPosition.Bottom
                     ),
                     LabelView(
                         labelView2,
+                        LabelPosition.Top
+                    )
+                    ,
+                    LabelView(
+                        labelView3,
+                        LabelPosition.Start
+                    ),
+                    LabelView(
+                        labelView4,
                         LabelPosition.End
                     )
                 )

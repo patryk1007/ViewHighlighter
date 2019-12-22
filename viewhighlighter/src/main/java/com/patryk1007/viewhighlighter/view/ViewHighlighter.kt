@@ -2,14 +2,16 @@ package com.patryk1007.viewhighlighter.view
 
 import android.content.Context
 import android.graphics.Point
+import android.os.Build
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.RelativeLayout
 import com.patryk1007.viewhighlighter.data.HighlightViewCallback
 import com.patryk1007.viewhighlighter.data.HighlightedViewWithLabels
 import com.patryk1007.viewhighlighter.data.LabelPosition
 import com.patryk1007.viewhighlighter.data.LabelView
-import com.patryk1007.viewhighlighter.ext.waitForLayout
 
 
 class ViewHighlighter : FrameLayout {
@@ -68,9 +70,9 @@ class ViewHighlighter : FrameLayout {
 
     private fun addHighLighterView() {
         addView(highlightView)
-        highlightView.layoutParams = FrameLayout.LayoutParams(
-            FrameLayout.LayoutParams.MATCH_PARENT,
-            FrameLayout.LayoutParams.MATCH_PARENT
+        highlightView.layoutParams = LayoutParams(
+            LayoutParams.MATCH_PARENT,
+            LayoutParams.MATCH_PARENT
         )
     }
 
@@ -86,44 +88,70 @@ class ViewHighlighter : FrameLayout {
         viewData: HighlightedViewWithLabels,
         viewPosition: Point
     ) {
-        val params =
-            FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT)
 
         viewData.labels.forEach {
-            val label = it.label
-            if (label.parent == null) {
-                label.layoutParams = params
-                addView(label)
-            }
-
-            label.waitForLayout {
-                setLabelPadding(it, viewPosition, viewData.view)
-            }
+            addLabelToView(it, viewPosition, viewData.view)
         }
     }
 
-    private fun setLabelPadding(labelView: LabelView, viewPosition: Point, highlightView: View) {
+    private fun addLabelToView(labelView: LabelView, viewPosition: Point, highlightView: View) {
         val highlightViewHeight = highlightView.height
         val highlightViewWidth = highlightView.width
+        val viewContainer = RelativeLayout(context)
+        val labelParent = labelView.label.parent
 
-        val padding = when (labelView.position) {
+        val params = LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT)
+        val paramsLabelParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+
+        when (labelView.position) {
             LabelPosition.Top -> {
-                Point(viewPosition.x + highlightViewWidth / 2, viewPosition.y - labelView.label.height)
+                params.setMargins(0,0,0, height-viewPosition.y)
+                paramsLabelParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE)
+                paramsLabelParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE)
             }
             LabelPosition.Bottom -> {
-                Point(viewPosition.x + highlightViewWidth / 2, viewPosition.y + highlightViewHeight)
+                params.setMargins(0,viewPosition.y + highlightViewHeight,0,0)
+                paramsLabelParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE)
             }
             LabelPosition.Start -> {
-                Point(viewPosition.x - labelView.label.width, (viewPosition.y + highlightViewHeight / 2))
+                params.setMargins(0,0,viewPosition.x + highlightViewWidth, 0)
+                paramsLabelParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                    paramsLabelParams.addRule(RelativeLayout.ALIGN_PARENT_END, RelativeLayout.TRUE)
+                }else{
+                    paramsLabelParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE)
+                }
             }
             LabelPosition.End -> {
-                Point(
-                    viewPosition.x + highlightViewWidth,
-                    (viewPosition.y + highlightViewHeight / 2)
-                )
+                params.setMargins(viewPosition.x + highlightViewWidth,0,0, 0)
+                paramsLabelParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE)
             }
         }
-        labelView.label.setPadding(padding.x, padding.y, 0, 0)
+
+
+
+        if(labelParent == null) {
+            val lp = RelativeLayout.LayoutParams(
+                LayoutParams.MATCH_PARENT,
+                LayoutParams.MATCH_PARENT
+            )
+            lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
+
+            viewContainer.layoutParams = params
+            viewContainer.setBackgroundColor(
+                ContextCompat.getColor(
+                    context,
+                    android.R.color.holo_green_light
+                )
+            )
+            addView(viewContainer)
+            viewContainer.addView(labelView.label)
+            labelView.label.setLayoutParams(paramsLabelParams)
+        } else if (labelParent is FrameLayout){
+            labelParent.layoutParams = params
+        }
     }
+
+
 
 }
