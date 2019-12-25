@@ -100,31 +100,31 @@ class ViewHighlighter : FrameLayout {
         val viewContainer = RelativeLayout(context)
         val labelParent = labelView.label.parent
 
-        val params = LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT)
-        val paramsLabelParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+        val viewContainerParams = LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT)
+        val labelParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
 
         when (labelView.position) {
             LabelPosition.Top -> {
-                params.setMargins(0,0,0, height-viewPosition.y)
-                paramsLabelParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE)
-                paramsLabelParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE)
+                viewContainerParams.setMargins(0,0,0, height-viewPosition.y)
+                labelParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE)
+                labelParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE)
             }
             LabelPosition.Bottom -> {
-                params.setMargins(0,viewPosition.y + highlightViewHeight,0,0)
-                paramsLabelParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE)
+                viewContainerParams.setMargins(0,viewPosition.y + highlightViewHeight,0,0)
+                labelParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE)
             }
             LabelPosition.Start -> {
-                params.setMargins(0,0,viewPosition.x + highlightViewWidth, 0)
-                paramsLabelParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE)
+                viewContainerParams.setMargins(0,0,viewPosition.x + highlightViewWidth, 0)
+                labelParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                    paramsLabelParams.addRule(RelativeLayout.ALIGN_PARENT_END, RelativeLayout.TRUE)
+                    labelParams.addRule(RelativeLayout.ALIGN_PARENT_END, RelativeLayout.TRUE)
                 }else{
-                    paramsLabelParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE)
+                    labelParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE)
                 }
             }
             LabelPosition.End -> {
-                params.setMargins(viewPosition.x + highlightViewWidth,0,0, 0)
-                paramsLabelParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE)
+                viewContainerParams.setMargins(viewPosition.x + highlightViewWidth,0,0, 0)
+                labelParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE)
             }
         }
 
@@ -137,7 +137,7 @@ class ViewHighlighter : FrameLayout {
             )
             lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
 
-            viewContainer.layoutParams = params
+            viewContainer.layoutParams = viewContainerParams
             viewContainer.setBackgroundColor(
                 ContextCompat.getColor(
                     context,
@@ -146,9 +146,9 @@ class ViewHighlighter : FrameLayout {
             )
             addView(viewContainer)
             viewContainer.addView(labelView.label)
-            labelView.label.setLayoutParams(paramsLabelParams)
+            labelView.label.layoutParams = labelParams
         } else if (labelParent is FrameLayout){
-            labelParent.layoutParams = params
+            labelParent.layoutParams = viewContainerParams
         }
     }
 
