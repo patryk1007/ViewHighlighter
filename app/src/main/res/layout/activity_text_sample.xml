@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:background="@android:color/holo_purple"
         android:layout_height="match_parent"
+        android:background="@android:color/holo_purple"
+        android:orientation="vertical"
         tools:context=".MainActivity">
 
 
@@ -15,29 +14,29 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
         <TextView
                 android:id="@+id/testTextA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ABC"
                 android:layout_gravity="center"
+                android:text="ABC"
                 android:textColor="@android:color/holo_green_dark"
-                android:textSize="125sp"/>
+                android:textSize="125sp" />
 
 
         <com.patryk1007.viewhighlighter.view.ViewHighlighter
                 android:id="@+id/viewHighlighter"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
         <LinearLayout
-                android:background="@android:color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
+                android:background="@android:color/white"
                 android:orientation="vertical"
                 android:paddingBottom="20dp">
 
@@ -45,29 +44,29 @@
                     android:id="@+id/alphaLevelText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"/>
+                    android:padding="10dp" />
 
             <android.support.v7.widget.AppCompatSeekBar
                     android:id="@+id/alphaLevelSlider"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"/>
+                    android:padding="10dp" />
 
             <CheckBox
                     android:id="@+id/fillTransparentCheckBox"
-                    android:text="@string/fill_transparent"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text="@string/fill_transparent" />
 
 
         </LinearLayout>
 
         <Button
                 android:id="@+id/testListButton"
-                android:text="@string/test_list"
-                android:layout_margin="15dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="@string/test_list" />
 
     </FrameLayout>
 

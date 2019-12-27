@@ -4,5 +4,6 @@ import android.view.View
 
 data class LabelView(
     val label: View,
-    val position: LabelPosition
+    val position: LabelPosition,
+    val labelGravity: List<Int>? = null
 )

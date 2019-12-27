@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:background="@android:color/holo_purple"
         android:layout_height="match_parent"
+        android:background="@android:color/holo_purple"
         tools:context=".MainActivity">
 
     <android.support.v7.widget.RecyclerView
             android:id="@+id/simpleRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
     <Button
             android:id="@+id/highlightItemButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_margin="15dp"
-            android:text="@string/highlight_item"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:text="@string/highlight_item" />
 
 </FrameLayout>
