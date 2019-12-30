@@ -107,12 +107,6 @@ class ViewHighlighter : FrameLayout {
 
             viewContainer.layoutParams =
                 getViewContainerLayoutParams(labelView, viewPosition, highlightView)
-            viewContainer.setBackgroundColor(
-                ContextCompat.getColor(
-                    context,
-                    android.R.color.holo_green_light
-                )
-            )
             addView(viewContainer)
             viewContainer.addView(labelView.label)
             labelView.label.layoutParams = getLabelLayoutParams(labelView)
