@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <Button
+            android:id="@+id/menuFullViewButton"
+            android:text="@string/menu_button_full_screen"
+            style="@style/MenuButtonStyle" />
+
+
+    <Button
+            android:id="@+id/menuListButton"
+            android:text="@string/menu_button_list"
+            style="@style/MenuButtonStyle" />
+
+
+    <Button
+            android:id="@+id/menuTextButton"
+            android:text="@string/menu_button_text"
+            style="@style/MenuButtonStyle" />
+
+</LinearLayout>
