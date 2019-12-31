@@ -11,7 +11,7 @@
     <string name="close_me">Close Me</string>
 
     <!--    MENU-->
-    <string name="menu_button_full_screen">Full-Screen Example</string>
+    <string name="menu_button_alpha">Alpha Example</string>
     <string name="menu_button_list">List Example</string>
     <string name="menu_button_text">Text Example</string>
 

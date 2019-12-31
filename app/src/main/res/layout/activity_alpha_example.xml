@@ -4,7 +4,6 @@
         android:layout_height="match_parent"
         android:background="@android:color/darker_gray">
 
-
     <LinearLayout
             android:id="@+id/alphaLevelView"
             android:layout_width="match_parent"
@@ -30,7 +29,35 @@
                 android:id="@+id/fillTransparentCheckBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
                 android:text="@string/fill_transparent" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/alphaLevelView"
+            android:orientation="vertical"
+            android:weightSum="3">
+
+        <ImageView
+                android:id="@+id/circleImage"
+                style="@style/AlphaImagesStyle"
+                android:src="@drawable/circle" />
+
+        <ImageView
+                android:id="@+id/rectangleImage"
+                style="@style/AlphaImagesStyle"
+                android:src="@drawable/rectangle" />
+
+        <ImageView
+                android:id="@+id/someDrunkGuysImage"
+                style="@style/AlphaImagesStyle"
+                android:tint="@android:color/holo_orange_dark"
+                android:src="@drawable/baseline_sports_kabaddi_black_48" />
 
     </LinearLayout>
 
@@ -38,6 +65,6 @@
             android:id="@+id/viewHighlighter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/alphaLevelView"/>
+            android:layout_above="@+id/alphaLevelView" />
 
 </RelativeLayout>

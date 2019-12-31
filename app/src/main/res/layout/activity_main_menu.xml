@@ -6,8 +6,8 @@
         android:orientation="vertical">
 
     <Button
-            android:id="@+id/menuFullViewButton"
-            android:text="@string/menu_button_full_screen"
+            android:id="@+id/menuAlphaViewButton"
+            android:text="@string/menu_button_alpha"
             style="@style/MenuButtonStyle" />
 
 

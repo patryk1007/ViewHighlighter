@@ -4,5 +4,5 @@ import android.view.View
 
 data class HighlightedViewWithLabels(
     val view: View,
-    val labels: List<LabelView>
+    val labels: List<LabelView> = listOf()
 )

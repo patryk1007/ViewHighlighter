@@ -28,4 +28,12 @@
         <item name="android:layout_marginRight">15dp</item>
     </style>
 
+    <style name="AlphaImagesStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
 </resources>
