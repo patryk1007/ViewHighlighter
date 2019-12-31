@@ -5,12 +5,12 @@ import android.content.Context
 import android.graphics.*
 import android.os.Build
 import android.view.View
-import com.patryk1007.viewhighlighter.data.HighlightViewCallback
+import com.patryk1007.viewhighlighter.data.HighlightedViewCallback
 import com.patryk1007.viewhighlighter.data.HighlightedViewWithLabels
 import com.patryk1007.viewhighlighter.data.LabelWithScreenPosition
 
 @SuppressLint("ViewConstructor")
-internal class HighlightView(context: Context?, private val viewCallback: HighlightViewCallback) : View(context) {
+internal class MainViewHighlighter(context: Context?, private val viewCallback: HighlightedViewCallback) : View(context) {
 
     companion object {
         private const val maxAlphaLevel = 255

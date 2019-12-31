@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.item_layout.view.*
 import kotlinx.android.synthetic.main.view_dialog_custom.view.*
 
 
-class MainActivity : AppCompatActivity() {
+class ListExampleActivity : AppCompatActivity() {
 
     private val layoutManager = LinearLayoutManager(this)
 

@@ -3,12 +3,11 @@ package com.patryk1007.viewhighlighter.view
 import android.content.Context
 import android.graphics.Point
 import android.os.Build
-import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.RelativeLayout
-import com.patryk1007.viewhighlighter.data.HighlightViewCallback
+import com.patryk1007.viewhighlighter.data.HighlightedViewCallback
 import com.patryk1007.viewhighlighter.data.HighlightedViewWithLabels
 import com.patryk1007.viewhighlighter.data.LabelPosition
 import com.patryk1007.viewhighlighter.data.LabelView
@@ -17,7 +16,7 @@ import com.patryk1007.viewhighlighter.data.LabelView
 class ViewHighlighter : FrameLayout {
 
     private val highlightView =
-        HighlightView(context, prepareHighlightViewCallback())
+        MainViewHighlighter(context, prepareHighlightViewCallback())
 
     constructor(context: Context?) : super(context) {
         addHighLighterView()
@@ -27,17 +26,8 @@ class ViewHighlighter : FrameLayout {
         addHighLighterView()
     }
 
-    fun setHighlightingViewWithLabels(views: List<HighlightedViewWithLabels>) {
+    fun setHighlightedViews(views: List<HighlightedViewWithLabels>) {
         highlightView.setHighlightingViewWithLabels(views)
-        notifyViewSetChanged()
-    }
-
-    fun setHighlightingView(views: List<View>) {
-        val newHighLighted = arrayListOf<HighlightedViewWithLabels>()
-        views.forEach {
-            newHighLighted.add(HighlightedViewWithLabels(it, arrayListOf()))
-        }
-        highlightView.setHighlightingViewWithLabels(newHighLighted)
         notifyViewSetChanged()
     }
 
@@ -76,8 +66,8 @@ class ViewHighlighter : FrameLayout {
         )
     }
 
-    private fun prepareHighlightViewCallback(): HighlightViewCallback {
-        return object : HighlightViewCallback {
+    private fun prepareHighlightViewCallback(): HighlightedViewCallback {
+        return object : HighlightedViewCallback {
             override fun onViewReady(viewData: HighlightedViewWithLabels, viewPosition: Point) {
                 prepareLabelsView(viewData, viewPosition)
             }

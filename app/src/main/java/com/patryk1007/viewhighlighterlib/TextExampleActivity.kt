@@ -9,7 +9,7 @@ import com.patryk1007.viewhighlighter.data.LabelPosition
 import com.patryk1007.viewhighlighter.data.LabelView
 import kotlinx.android.synthetic.main.activity_text_sample.*
 
-class TextSampleActivity : AppCompatActivity() {
+class TextExampleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +48,7 @@ class TextSampleActivity : AppCompatActivity() {
             )
         )
 
-        viewHighlighter.setHighlightingViewWithLabels(highlightedViews)
+        viewHighlighter.setHighlightedViews(highlightedViews)
         initView()
     }
 
@@ -83,7 +83,7 @@ class TextSampleActivity : AppCompatActivity() {
 
     private fun initButton() {
         testListButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, ListExampleActivity::class.java)
             startActivity(intent)
         }
         fillTransparentCheckBox.setOnCheckedChangeListener { p0, p1 -> updateTransparentBackgroundMode() }

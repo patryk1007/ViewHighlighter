@@ -15,13 +15,13 @@ class MainMenuActivity : AppCompatActivity() {
 
     private fun initButtons(){
         menuFullViewButton.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, ListExampleActivity::class.java))
         }
         menuListButton.setOnClickListener {
-            //todo implement me
+            startActivity(Intent(this, AlphaExampleActivity::class.java))
         }
         menuTextButton.setOnClickListener {
-            startActivity(Intent(this, TextSampleActivity::class.java))
+            startActivity(Intent(this, TextExampleActivity::class.java))
         }
     }
 }

@@ -44,7 +44,7 @@ class FullScreenHighlight(
             ViewGroup.LayoutParams.MATCH_PARENT
         )
         dialogRootView.addView(viewHighlighter)
-        viewHighlighter.setHighlightingViewWithLabels(highlightedViews)
+        viewHighlighter.setHighlightedViews(highlightedViews)
     }
 
     private fun addLayoutView() {
